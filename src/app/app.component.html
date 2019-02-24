@@ -1,18 +1,24 @@
 <div class="top-menu">
-
     <img class="logo"
          src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
-
 </div>
 
+<!--Play with pipes-->
+<div class="demo">
+  <div>Start Date: {{startDate | date }}</div>
+</div>
 
 <div class="courses">
 
-  <course-card [course]="coreCourse"></course-card>
+  <course-card
+    *ngFor="let course of courses; index as i; first as isFirst; last as isLast"
+               [class.is-first]="isFirst"
+               [class.is-last]="isLast"
+               (courseSelected)="onCourseSelected($event)"
+               [course]="course" [cardIndex]="i + 1">
+  </course-card>
 
-  <course-card [course]="rxjsCourse"></course-card>
-
-  <course-card [course]="ngrxCourse"></course-card>
-
+  <!--Use the class in the pre-stored CSS file to assign to the first and last of elements-->
+  <!--Use the $ to emit the event on customized click event-->
 </div>
 
